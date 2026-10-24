@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#18221d">
+  <title>Takım Scrum Boardu</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h4A1.5 1.5 0 0 1 11 5.5v4A1.5 1.5 0 0 1 9.5 11h-4A1.5 1.5 0 0 1 4 9.5zm9 0A1.5 1.5 0 0 1 14.5 4h4A1.5 1.5 0 0 1 20 5.5v4a1.5 1.5 0 0 1-1.5 1.5h-4A1.5 1.5 0 0 1 13 9.5zm-9 9A1.5 1.5 0 0 1 5.5 13h4a1.5 1.5 0 0 1 1.5 1.5v4A1.5 1.5 0 0 1 9.5 20h-4A1.5 1.5 0 0 1 4 18.5zm9 0a1.5 1.5 0 0 1 1.5-1.5h4a1.5 1.5 0 0 1 1.5 1.5v4a1.5 1.5 0 0 1-1.5 1.5h-4a1.5 1.5 0 0 1-1.5-1.5z" transform="translate(0 -1) scale(.98)"/></svg></div>
+      <div><div class="brand-name">cadence<span>.</span></div><div class="brand-sub">PERSONAL WORKSPACE</div></div>
+    </div>
+    <div class="workspace-label">ÇALIŞMA ALANI</div>
+    <div class="workspace-switch"><div class="workspace-avatar">T</div><div class="workspace-copy"><strong id="sidebarBoardName">Takım Scrum Boardu</strong><small>Yerel çalışma alanı</small></div><svg class="chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></svg></div>
+    <div class="nav-label">ÇALIŞMA</div>
+    <nav class="main-nav" aria-label="Ana menü">
+      <button class="nav-item active" data-view="board"><span class="nav-ico"><svg viewBox="0 0 24 24"><rect x="3.5" y="4" width="5" height="16" rx="1.2"/><rect x="10" y="4" width="5" height="10" rx="1.2"/><rect x="16.5" y="4" width="4" height="13" rx="1.2"/></svg></span><span>Scrum boardu</span><span class="nav-count" id="boardNavCount">0</span></button>
+      <button class="nav-item" data-view="backlog"><span class="nav-ico"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg></span><span>Ürün backlog'u</span><span class="nav-count" id="backlogNavCount">0</span></button>
+      <button class="nav-item" data-view="insights"><span class="nav-ico"><svg viewBox="0 0 24 24"><path d="M4 19V9m6 10V5m6 14v-7m5 7H2"/></svg></span><span>Raporlar</span></button>
+    </nav>
+    <div class="sidebar-divider"></div>
+    <div class="nav-label sprint-label">AKTİF SPRINT</div>
+    <div class="sidebar-sprint" id="sidebarSprint"><span class="sprint-dot"></span><span id="sidebarSprintName">Sprint 1</span><span class="sprint-live">AKTİF</span></div>
+    <div class="sidebar-sprint-meta" id="sidebarSprintDates">Sprint tarihleri</div>
+    <button class="sidebar-new-sprint" id="sidebarNewSprint"><span>＋</span> Yeni sprint oluştur</button>
+    <div class="sidebar-bottom">
+      <div class="local-status"><span class="status-light"></span><div><strong>Yerel olarak kayıtlı</strong><small>Veriler bilgisayarında kalır</small></div></div>
+      <button class="profile-row" id="exportBtn"><div class="profile-avatar"><svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 17v3h14v-3"/></svg></div><span>Dışa aktar / yedekle</span><svg class="profile-arrow" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div class="breadcrumbs"><span>Çalışma alanı</span><span class="crumb-sep">/</span><strong id="crumbTitle">Scrum boardu</strong></div>
+      <div class="top-actions">
+        <label class="search-box"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input type="search" id="searchInput" placeholder="Görev ara..." autocomplete="off"><kbd>⌘ K</kbd></label>
+        <button class="icon-button" id="exportTopBtn" title="Verileri dışa aktar" aria-label="Verileri dışa aktar"><svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 17v3h14v-3"/></svg></button>
+        <div class="top-avatar" title="Yerel çalışma alanı">T</div>
+      </div>
+    </header>
+
+    <section class="page-wrap">
+      <div class="page-heading">
+        <div class="heading-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> TAKIM ALANI <span class="eyebrow-slash">/</span> PLANLAMA</div><h1 id="pageTitle">Sprint boardu<span class="title-period">.</span></h1><p id="pageSubtitle">İşleri görünür kıl. Odağını koru. Birlikte ilerle.</p></div>
+        <div class="heading-buttons"><button class="btn btn-secondary" id="newSprintBtn"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Yeni sprint</button><button class="btn btn-primary" id="newTaskBtn"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Görev oluştur</button></div>
+      </div>
+
+      <div class="sprint-strip" id="sprintStrip">
+        <div class="sprint-info"><div class="sprint-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.5 2"/></svg></div><div class="sprint-text"><div class="sprint-title-row"><strong id="activeSprintName">Sprint 1</strong><span class="active-tag">AKTİF SPRINT</span></div><span id="activeSprintGoal">Sprint hedefinizi belirleyin.</span></div></div>
+        <div class="sprint-date-block"><span class="mini-label">SPRINT TAKVİMİ</span><strong id="activeSprintDates">—</strong></div>
+        <div class="sprint-progress-block"><div class="progress-heading"><span>İlerleme</span><strong id="sprintProgressText">0%</strong></div><div class="progress-track"><div class="progress-fill" id="sprintProgressFill"></div></div><small id="sprintProgressSub">0 / 0 görev tamamlandı</small></div>
+        <div class="sprint-select-wrap"><label for="sprintSelect">Sprint seç</label><select id="sprintSelect" aria-label="Aktif sprint seç"></select></div>
+      </div>
+
+      <section class="metrics-grid" id="metricsGrid">
+        <article class="metric-card"><div class="metric-top"><span>Sprint kapsamı</span><span class="metric-icon icon-purple"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M3.5 6h.01M3.5 12h.01M3.5 18h.01"/></svg></span></div><div class="metric-number" id="metricTotal">0 <small>görev</small></div><div class="metric-foot"><span class="metric-caption">Bu sprintte planlanan</span></div></article>
+        <article class="metric-card"><div class="metric-top"><span>Devam eden</span><span class="metric-icon icon-blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3 2"/></svg></span></div><div class="metric-number" id="metricProgress">0</div><div class="metric-foot"><span class="mini-status blue-status"></span><span class="metric-caption">Aktif çalışmalar</span></div></article>
+        <article class="metric-card"><div class="metric-top"><span>Tamamlanan</span><span class="metric-icon icon-green"><svg viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></svg></span></div><div class="metric-number" id="metricDone">0</div><div class="metric-foot"><span class="mini-status green-status"></span><span class="metric-caption" id="metricDoneFoot">Sprint çıktıları</span></div></article>
+        <article class="metric-card"><div class="metric-top"><span>Story point</span><span class="metric-icon icon-orange"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/></svg></span></div><div class="metric-number" id="metricPoints">0 <small>SP</small></div><div class="metric-foot"><span class="metric-caption">Toplam iş tahmini</span></div></article>
+      </section>
+
+      <section class="board-section" id="boardSection">
+        <div class="board-toolbar"><div class="view-switch" role="tablist"><button class="view-tab active" data-view="board">Pano görünümü</button><button class="view-tab" data-view="backlog">Backlog</button></div><div class="board-toolbar-right"><div class="filter-wrap"><svg viewBox="0 0 24 24"><path d="M4 6h16M7 12h10m-7 6h4"/></svg><select id="priorityFilter" aria-label="Önceliğe göre filtre"><option value="all">Tüm öncelikler</option><option value="urgent">Acil</option><option value="high">Yüksek</option><option value="medium">Orta</option><option value="low">Düşük</option></select></div><div class="people-stack" id="peopleStack" title="Görevlerdeki ekip üyeleri"></div><button class="btn btn-small btn-outline" id="boardAddBtn"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Ekle</button></div></div>
+        <div class="board-columns" id="boardColumns"></div>
+      </section>
+      <section class="backlog-section hidden" id="backlogSection"><div class="backlog-toolbar"><div><h2>Ürün backlog'u</h2><p>Henüz bir sprint'e alınmamış görevler burada bekler.</p></div><button class="btn btn-primary" id="backlogAddBtn"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg> Backlog'a görev ekle</button></div><div id="backlogList" class="backlog-list"></div></section>
+      <section class="insights-section hidden" id="insightsSection"><div class="backlog-toolbar"><div><h2>Proje görünümü</h2><p>Tüm sprintlerindeki iş yükünü ve tamamlanma durumunu takip et.</p></div><button class="btn btn-secondary" id="insightsExportBtn"><svg viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 17v3h14v-3"/></svg> Raporu dışa aktar</button></div><div class="insight-grid" id="insightGrid"></div><div class="report-panel"><h3>Sprint geçmişi</h3><div id="sprintReportList"></div></div></section>
+      <footer class="page-footer"><span><span class="footer-dot"></span> Yerel modda çalışıyor</span><span>Verilerin senin cihazında saklanır <span class="footer-heart">♥</span></span></footer>
+    </section>
+  </main>
+</div>
+
+<div class="modal-backdrop hidden" id="taskModalBackdrop" role="presentation">
+  <section class="modal task-modal" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle">
+    <div class="modal-head"><div><span class="modal-kicker" id="taskModalKicker">GÖREV YÖNETİMİ</span><h2 id="taskModalTitle">Yeni görev oluştur</h2><p>Görevi netleştir, sorumlu belirle ve plana ekle.</p></div><button class="modal-close" data-close="taskModalBackdrop" aria-label="Kapat">×</button></div>
+    <form id="taskForm">
+      <input type="hidden" id="taskId">
+      <label class="field full-field"><span>Görev başlığı <em>*</em></span><input id="taskTitle" maxlength="180" placeholder="Örn. Kullanıcı giriş akışını tasarla" required autofocus></label>
+      <label class="field full-field"><span>Açıklama</span><textarea id="taskDescription" rows="3" placeholder="Bu görevde ne yapılması gerekiyor?"></textarea></label>
+      <div class="form-grid"><label class="field"><span>Durum</span><select id="taskStatus"><option value="todo">Yapılacak</option><option value="in_progress">Devam ediyor</option><option value="review">İncelemede</option><option value="done">Tamamlandı</option></select></label><label class="field"><span>Öncelik</span><select id="taskPriority"><option value="low">Düşük</option><option value="medium" selected>Orta</option><option value="high">Yüksek</option><option value="urgent">Acil</option></select></label></div>
+      <div class="form-grid"><label class="field"><span>Sorumlu kişi</span><input id="taskAssignee" placeholder="İsim veya baş harfler"></label><label class="field"><span>Story point</span><input id="taskPoints" type="number" min="0" max="100" step="1" value="0"></label></div>
+      <div class="form-grid"><label class="field"><span>Hedef tarih</span><input id="taskDueDate" type="date"></label><label class="field"><span>Sprint</span><select id="taskSprint"></select></label></div>
+      <label class="field full-field"><span>Etiketler <small>(virgülle ayır)</small></span><input id="taskLabels" placeholder="Frontend, Tasarım, Bug"></label>
+      <div class="modal-error hidden" id="taskError"></div>
+      <div class="modal-footer"><button type="button" class="btn btn-danger hidden" id="deleteTaskBtn">Görevi sil</button><div class="modal-footer-right"><button type="button" class="btn btn-secondary" data-close="taskModalBackdrop">Vazgeç</button><button type="submit" class="btn btn-primary" id="saveTaskBtn">Görevi kaydet <svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></button></div></div>
+    </form>
+  </section>
+</div>
+
+<div class="modal-backdrop hidden" id="sprintModalBackdrop" role="presentation">
+  <section class="modal sprint-modal" role="dialog" aria-modal="true" aria-labelledby="sprintModalTitle">
+    <div class="modal-head"><div><span class="modal-kicker">SPRINT PLANLAMA</span><h2 id="sprintModalTitle">Yeni sprint oluştur</h2><p>Takımın odağını ve teslim hedefini belirle.</p></div><button class="modal-close" data-close="sprintModalBackdrop" aria-label="Kapat">×</button></div>
+    <form id="sprintForm"><label class="field full-field"><span>Sprint adı <em>*</em></span><input id="sprintName" required maxlength="80" placeholder="Örn. Sprint 02 · Keşif"></label><label class="field full-field"><span>Sprint hedefi</span><textarea id="sprintGoal" rows="3" placeholder="Bu sprint sonunda hangi sonucu elde etmek istiyorsunuz?"></textarea></label><div class="form-grid"><label class="field"><span>Başlangıç tarihi</span><input id="sprintStart" type="date" required></label><label class="field"><span>Bitiş tarihi</span><input id="sprintEnd" type="date" required></label></div><div class="modal-error hidden" id="sprintError"></div><div class="modal-footer"><span class="modal-hint">Oluşturunca aktif sprint olarak seçilir.</span><div class="modal-footer-right"><button type="button" class="btn btn-secondary" data-close="sprintModalBackdrop">Vazgeç</button><button type="submit" class="btn btn-primary">Sprint oluştur <svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></button></div></div></form>
+  </section>
+</div>
+<div class="toast-region" id="toastRegion" aria-live="polite"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>
